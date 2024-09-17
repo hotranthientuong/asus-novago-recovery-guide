@@ -179,7 +179,7 @@ OEM drivers are already included in the ISO, so no further operation is required
     ```BatchFile
     ren utilman.exe utilman2.exe
     ```
-Next, copy the command application to a new file which replaces the original utilman.exe that was renamed above using: 
+Next, copy the command application to a new file which replaces the original utilman.exe that was renamed above using:
     ```BatchFile
     copy cmd.exe utilman.exe
     ```
