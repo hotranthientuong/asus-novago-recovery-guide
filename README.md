@@ -62,31 +62,36 @@ So, the only thing to be done here is to [**download the full repository as a ZI
 This step is deeply covered by [this tutorial on tenforums.com](https://www.tenforums.com/tutorials/95008-dism-add-remove-drivers-offline-image.html), but I'll still write here an essential guide on which steps I did to get what I needed:
 
 1. Open the ISO previously downloaded
-2. Copy the content into a temporary folder (let's say "*C:\ISO_Files*")
+2. Copy the content into a temporary folder (let's say "*E:\ISO_Files*")
 3. Open PowerShell with administrator rights
 4. Run the command 
     ```powershell
-    Dism /Get-WimInfo /WimFile:C:\ISO_Files\Sources\install.wim
+    Dism /Get-WimInfo /WimFile:E:\ISO_Files\Sources\install.wim
     ```
     This command will show you all the Windows editions included in the ISO.<br>
     Find the one you need (I went for the "*Windows 10 Professional*" edition) and take note of the Index (in my case was 2)
-5. Go to *C:* drive root and create a folder named "*Mount*"
-6. Run the commands
+5. Go to *E:* drive root and create a folder named "*Mount*"
+6. Go to *E:* drive root and create a folder named "*Boot*"
+7. Run the commands
     ```powershell
-    Dism /Mount-Image /ImageFile:C:\ISO_Files\Sources\install.wim /Index:2 /MountDir:C:\Mount
+    Dism /Mount-Image /ImageFile:E:\ISO_Files\Sources\install.wim /Index:2 /MountDir:E:\Mount
+    Dism /Mount-Image /ImageFile:E:\ISO_Files\Sources\boot.wim /Index:2 /MountDir:E:\Boot
     ``` 
     *(In these commands you must replace the "**/Index:2**" with the index you took note in step 4)*
     
     Such commands will mount the contents of the *install.wim* and *boot.wim* images in the specified folder, making them accessible and editable by the DISM tool.
-7. Run the command
+8. Run the command
     ```powershell
-    dism /Image:C:\Mount /Add-Driver /Driver:C:\NovaGo_drivers\drivers /Recurse
+    Dism /Image:E:\Mount /Add-Driver /Driver:E:\NovaGo_drivers\drivers /Recurse
+
+    Dism /Image:E:\Boot /Add-Driver /Driver:E:\NovaGo_drivers\drivers /Recurse
     ```
 
     This command will inject the ASUS NovaGo drivers listed in the "*drivers*" subfolder into the mounted images.
-8. Finally, run this command to commit (save) the changes made till now:
+9. Finally, run this command to commit (save) the changes made till now:
     ```powershell
-    dism /Unmount-Image /MountDir:C:\Mount /Commit
+    Dism /Unmount-Image /MountDir:E:\Mount /Commit
+    Dism /Unmount-Image /MountDir:E:\Boot /Commit
     ```
 
 ## :hammer: Rebuild the ISO File
@@ -109,7 +114,7 @@ Now follow these steps:
     **Start menu --> Windows Kits --> Deployment and Imaging Tools**
 2. Run this command:
     ```BatchFile
-    oscdimg.exe -m -o -u2 -udfver102 -bootdata:2#p0,e,bc:\iso_files\boot\etfsboot.com#pEF,e,bc:\iso_files\efi\microsoft\boot\efisys.bin c:\iso_files c:\Win10_ARM64.iso
+    oscdimg.exe -m -o -u2 -udfver102 -bootdata:2#p0,e,be:\iso_files\boot\etfsboot.com#pEF,e,be:\iso_files\efi\microsoft\boot\efisys.bin e:\iso_files E:\Win10_ARM64.iso
     ```
 
 When the process will end, it will create the "*Win10_ARM64.iso*" file in the root of the *C:* drive: this is the ISO image we are going to use on the next step to make a bootable USB.
@@ -149,6 +154,40 @@ Here's the final step: just **put the USB drive you prepared into the PC and tur
 **If everything has been done correctly, Windows installation should start** and you should be able to install Windows 10 (or any version you choose) on the PC.
 
 OEM drivers are already included in the ISO, so no further operation is required, only installation.
+
+## :trophy: Bypass Windows 10 Login Password using the USB Boot Win10 ARM
+
+- Boot the PC from a bootable USB Windows 10 installation media.
+- Once at the Windows Setup window, access the command prompt by pressing: Shift + F10
+- List all the drives that are on this PC using the following command: 
+    ```BatchFile
+    wmic logicaldisk get name
+    ```
+- Cycle through each drive letter by entering the drive followed by a colon: 
+    ```BatchFile
+    c:
+    ```
+- Then list the directory contents for the selected drive using: 
+    ```BatchFile
+    dir
+    ```
+- Once the directory containing the Windows folder is located, access it and the underlying System32 folder using: 
+    ```BatchFile
+    cd windows/system32
+    ```
+- Within the System32 folder rename the utilman.exe file as this will essentially back it up using: 
+    ```BatchFile
+    ren utilman.exe utilman2.exe
+    ```
+Next, copy the command application to a new file which replaces the original utilman.exe that was renamed above using: 
+    ```BatchFile
+    copy cmd.exe utilman.exe
+    ```
+Now reboot the PC normally and at the Windows 10 login screen, click on the Ease of Access icon down at the bottom right of the screen. This should now bring up a command prompt window because the utilman.exe was replaced with cmd.exe.
+Next, enter the following command which will allow us to update the user account password: 
+    ```BatchFile
+    net user [username] [password]
+    ```
 
 # :100: Conclusion
 
