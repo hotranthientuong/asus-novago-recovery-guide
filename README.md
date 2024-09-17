@@ -36,7 +36,7 @@ To overcome it, there are a few steps which can be followed:
 6. [:trident: Make a bootable USB drive](#make-a-bootable-usb-drive)
 7. [:construction: Setup ASUS NovaGo BIOS](#setup-asus-novago-bios)
 8. [:trophy: Install Windows](#install-windows)
-9. [:trophy: Bypass Windows 10 Login Password]Bypass Windows 10 Login Password using the USB Boot Win10 ARM
+9. [:trophy: Bypass Win10 Login Password]https://github.com/hotranthientuong/asus-novago-recovery-guide/blob/main/README.md#bypass-bypass-windows-10-login-password-using-the-usb-boot-win10-arm
 
 ## :arrow_down_small: Download Windows 10 ARM64 ISO
 
