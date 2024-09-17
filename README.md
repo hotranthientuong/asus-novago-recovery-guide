@@ -36,6 +36,7 @@ To overcome it, there are a few steps which can be followed:
 6. [:trident: Make a bootable USB drive](#make-a-bootable-usb-drive)
 7. [:construction: Setup ASUS NovaGo BIOS](#setup-asus-novago-bios)
 8. [:trophy: Install Windows](#install-windows)
+9. [:trophy: Bypass Windows 10 Login Password]Bypass Windows 10 Login Password using the USB Boot Win10 ARM
 
 ## :arrow_down_small: Download Windows 10 ARM64 ISO
 
@@ -158,7 +159,7 @@ Here's the final step: just **put the USB drive you prepared into the PC and tur
 
 OEM drivers are already included in the ISO, so no further operation is required, only installation.
 
-## :trophy: Bypass Windows 10 Login Password using the USB Boot Win10 ARM
+## :bypass: Bypass Windows 10 Login Password using the USB Boot Win10 ARM
 
 - Boot the PC from a bootable USB Windows 10 installation media.
 - Once at the Windows Setup window, access the command prompt by pressing: Shift + F10
