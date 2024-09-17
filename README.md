@@ -179,12 +179,12 @@ OEM drivers are already included in the ISO, so no further operation is required
     ```BatchFile
     ren utilman.exe utilman2.exe
     ```
-Next, copy the command application to a new file which replaces the original utilman.exe that was renamed above using:
+- Next, copy the command application to a new file which replaces the original utilman.exe that was renamed above using:
     ```BatchFile
     copy cmd.exe utilman.exe
     ```
-Now reboot the PC normally and at the Windows 10 login screen, click on the Ease of Access icon down at the bottom right of the screen. This should now bring up a command prompt window because the utilman.exe was replaced with cmd.exe.
-Next, enter the following command which will allow us to update the user account password: 
+- Now reboot the PC normally and at the Windows 10 login screen, click on the Ease of Access icon down at the bottom right of the screen. This should now bring up a command prompt window because the utilman.exe was replaced with cmd.exe.
+- Next, enter the following command which will allow us to update the user account password: 
     ```BatchFile
     net user [username] [password]
     ```
