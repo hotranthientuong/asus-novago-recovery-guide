@@ -1,7 +1,7 @@
 # :scroll: Disclaimer
 > Thank you jackdan93 for the guide. His original repo: https://github.com/jackdan93/asus-novago-recovery-guide
 
-> This is my edit for more details with i need to bypass the NovaGo login password because i forgot it.
+> This is my edit for more details with i need to bypass the NovaGo Windows10 login password because i forgot it.
 
 > Please note that this tutorial is for informational purposes only, and the steps outlined may not be suitable for every device or situation.
 
