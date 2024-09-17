@@ -74,8 +74,6 @@ This step is deeply covered by [this tutorial on tenforums.com](https://www.tenf
 6. Run the commands
     ```powershell
     Dism /Mount-Image /ImageFile:C:\ISO_Files\Sources\install.wim /Index:2 /MountDir:C:\Mount
-
-    Dism /Mount-Image /ImageFile:C:\ISO_Files\Sources\boot.wim /Index:2 /MountDir:C:\Mount
     ``` 
     *(In these commands you must replace the "**/Index:2**" with the index you took note in step 4)*
     
