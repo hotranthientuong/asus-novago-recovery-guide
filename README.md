@@ -198,6 +198,6 @@ Armed with the knowledge and steps outlined in this guide, you now know how to e
 
 I seriously hope this guide helped you, especially because I put a lot of effort in writing it!
 
-# :muscle: Support my work
+# :muscle: Support jackdan93 work
 
-If this guide saved your device from the trash can, please consider [buying me a coffee](https://paypal.me/jackdan93) :coffee:
+If this guide saved your device from the trash can, please consider [buying jackdan93 a coffee](https://paypal.me/jackdan93) :coffee:
